@@ -59,13 +59,15 @@ sol = solve(prob)
     write("test/runtests.jl", test_content)
     println("Modified test/runtests.jl to expect x == $i.0")
 
-    # Give Revise a moment to detect changes
-    # sleep(0.0001)
+
 
     # If JULIA_REVISE is set to "off", manually trigger revise()
     if get(ENV, "JULIA_REVISE", "auto") == "off"
         println("JULIA_REVISE=off: Running revise()...")
         revise()
+    else
+        # Give Revise a moment to detect changes
+        sleep(0.5)
     end
 
     # Step 4: Run the tests
