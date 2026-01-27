@@ -1,7 +1,8 @@
 @echo off
 REM Batch script to test Revise hot-reloading in Julia
-REM Usage: run_revise_test.bat [N]
+REM Usage: run_revise_test.bat [N] [REVISE_MODE]
 REM   N = number of iterations (default: 5)
+REM   REVISE_MODE = auto or off (default: auto)
 
 setlocal
 
@@ -12,7 +13,14 @@ if "%~1"=="" (
     set N_ITERATIONS=%~1
 )
 
-echo Running Revise test with %N_ITERATIONS% iterations...
+REM Set the JULIA_REVISE mode (default to auto if not provided)
+if "%~2"=="" (
+    set JULIA_REVISE=auto
+) else (
+    set JULIA_REVISE=%~2
+)
+
+echo Running Revise test with %N_ITERATIONS% iterations (JULIA_REVISE=%JULIA_REVISE%)...
 echo.
 
 REM Run the Julia script with Revise
