@@ -1,0 +1,11 @@
+name = "ReviseTest"
+uuid = "e6b19e12-a0c5-4353-a026-a8114c15d409"
+version = "0.1.0"
+authors = ["Brad Carman <bradleygcarman@outlook.com>"]
+
+[deps]
+LinearAlgebra = "37e2e46d-f89d-539d-b4ee-838fcccc9c8e"
+ModelingToolkit = "961ee093-0014-501f-94e3-6117800e7a78"
+ModelingToolkitInputs = "9c47c465-b61a-4984-aca2-8d7e8f154266"
+OrdinaryDiffEq = "1dea7af3-3e70-54e6-95c3-0bf5283fa5ed"
+Plots = "91a5bcdd-55d7-5caf-9e0b-520d859cae80"
