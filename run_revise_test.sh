@@ -1,8 +1,9 @@
 #!/bin/bash
 # Shell script to test Revise hot-reloading in Julia
-# Usage: ./run_revise_test.sh [N] [REVISE_MODE]
+# Usage: ./run_revise_test.sh [N] [REVISE_MODE]  [SLEEP_TIME]
 #   N = number of iterations (default: 5)
 #   REVISE_MODE = auto or off (default: auto)
+#   SLEEP_TIME = sleep time before calling revise() (default: 0)
 
 # Set the number of iterations (default to 5 if not provided)
 if [ -z "$1" ]; then
@@ -18,8 +19,15 @@ else
     export JULIA_REVISE=$2
 fi
 
-echo "Running Revise test with $N_ITERATIONS iterations (JULIA_REVISE=$JULIA_REVISE)..."
-echo
+if [ -z "$3" ]; then
+    export SLEEP_TIME=0
+else
+    export SLEEP_TIME=$3
+fi
+
+# Reset the package
+git restore generated/mtk.jl
+git restore test/runtests.jl
 
 # Run the Julia script with Revise
 julia revise_test.jl

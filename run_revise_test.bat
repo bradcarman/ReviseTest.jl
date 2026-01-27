@@ -1,8 +1,9 @@
 @echo off
 REM Batch script to test Revise hot-reloading in Julia
-REM Usage: run_revise_test.bat [N] [REVISE_MODE]
+REM Usage: run_revise_test.bat [N] [REVISE_MODE] [SLEEP_TIME]
 REM   N = number of iterations (default: 5)
 REM   REVISE_MODE = auto or off (default: auto)
+REM   SLEEP_TIME = sleep time before calling revise() (default: 0)
 
 setlocal
 
@@ -20,8 +21,17 @@ if "%~2"=="" (
     set JULIA_REVISE=%~2
 )
 
-echo Running Revise test with %N_ITERATIONS% iterations (JULIA_REVISE=%JULIA_REVISE%)...
-echo.
+REM Sleep time
+if "%~3"=="" (
+    set SLEEP_TIME=0
+) else (
+    set SLEEP_TIME=%~3
+)
+
+
+REM Reset the package
+git restore generated/mtk.jl
+git restore test/runtests.jl
 
 REM Run the Julia script with Revise
 julia revise_test.jl
