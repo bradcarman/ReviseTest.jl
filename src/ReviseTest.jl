@@ -1,5 +1,5 @@
-module ErrorCorp
+module ReviseTest
 
 include("../generated/mtk.jl")
 
-end # module ErrorCorp
+end # module ReviseTest

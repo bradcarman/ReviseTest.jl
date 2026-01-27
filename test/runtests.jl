@@ -1,9 +1,9 @@
 using Test
-using ErrorCorp
+using ReviseTest
 using ModelingToolkit
 using OrdinaryDiffEq
 
-@mtkcompile sys = ErrorCorp.MainSystem()
+@mtkcompile sys = ReviseTest.MainSystem()
 prob = ODEProblem(sys, [], (0, 1))
 sol = solve(prob)
-@test sol(1.0; idxs=sys.x) == 2.0
+@test sol(1.0; idxs=sys.x) == 1.0

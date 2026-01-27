@@ -5,7 +5,7 @@ using Pkg
 Pkg.activate(".")
 
 # Load the package in dev mode so Revise can track it
-using ErrorCorp
+using ReviseTest
 using Test
 using ModelingToolkit
 using OrdinaryDiffEq
@@ -47,11 +47,11 @@ end
 
     # Step 3: Modify test/runtests.jl to test for the new value
     test_content = """using Test
-using ErrorCorp
+using ReviseTest
 using ModelingToolkit
 using OrdinaryDiffEq
 
-@mtkcompile sys = ErrorCorp.MainSystem()
+@mtkcompile sys = ReviseTest.MainSystem()
 prob = ODEProblem(sys, [], (0, 1))
 sol = solve(prob)
 @test sol(1.0; idxs=sys.x) == $i.0

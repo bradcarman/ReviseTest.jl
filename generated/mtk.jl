@@ -3,7 +3,7 @@ using ModelingToolkit: t_nounits as t, D_nounits as D
 using OrdinaryDiffEq
 
 @component function MainSystem(;name)
-    @variables x(t)=2
+    @variables x(t)=1
     return System([D(x)~0], t; name)
 end
 
