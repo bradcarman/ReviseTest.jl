@@ -38,7 +38,7 @@ for i in 2:N
         using ModelingToolkit: t_nounits as t, D_nounits as D
         using OrdinaryDiffEq
 
-        @component function MainSystem(;name)
+        function MainSystem(;name)
             @variables x(t)=$i
             return System([D(x)~0], t; name)
         end
